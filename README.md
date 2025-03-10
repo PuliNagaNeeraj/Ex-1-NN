@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: Puli Naga Neeraj</H3>
+<H3>ENTER YOUR REGISTER NO: 212223240130</H3>
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -37,11 +37,88 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
 
-
+### Import Libraries
+```
+import pandas as pd
+import seaborn as sns
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from scipy import stats
+import numpy as np
+```
+### Read the dataset
+```
+df = pd.read_csv('Churn_Modelling.csv')
+print(df)
+```
+### values of X & Y
+```
+X = df.iloc[:, :-1].values
+print(X)
+y = df.iloc[:, -1].values
+print(y)
+```
+### Check for outliers
+```
+df.describe()
+```
+### Missing Values
+```
+print(df.isnull().sum())
+df.fillna(df.mean().round(1), inplace=True)
+print(df.isnull().sum())
+y = df.iloc[:, -1].values
+print(y)
+```
+### Check for duplicates
+```
+df.duplicated()
+```
+### Droppimg string values from dataset
+```
+data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+```
+### Normalize dataset
+```
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+```
+### Training and testing model
+```
+X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2)
+print("X_train\n")
+print(X_train)
+print("\nLenght of X_train ",len(X_train))
+print("\nX_test\n")
+print(X_test)
+print("\nLenght of X_test ",len(X_test))
+```
+### 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+### Reading Data
+![image](https://github.com/user-attachments/assets/a1fdd870-6289-4ae7-ab5e-635c03d38654)
+
+### X features & Y features
+![image](https://github.com/user-attachments/assets/9ebc6f12-79b7-4a45-90ac-2e65b0fc8db9)
+
+### Outliers
+![image](https://github.com/user-attachments/assets/671743b4-b87c-43e8-b4b2-f6ff6d586d0d)
+
+### Missing Values
+![image](https://github.com/user-attachments/assets/95c55d7c-c627-433c-9216-1daf8f64ceff)
+
+### Duplicates Identification
+![image](https://github.com/user-attachments/assets/44967d22-8ae5-4a11-9801-30a59341ffb1)
+
+### Normalize the dataset
+![image](https://github.com/user-attachments/assets/7bb8cb39-05b7-46c9-ac96-e88b2b8d30cc)
+
+### SPLITTING THE TRAINING AND TESTING DATASET
+![image](https://github.com/user-attachments/assets/b6f67a61-2822-41dd-8634-c67c3ab31401)
 
 
 ## RESULT:
